@@ -62,16 +62,16 @@ export const CanvasManager = withStyles(styles)(
         var canvas = this.CreateHTMLCanvasByName("coralfinder");
 
         fabric.Object.prototype.set({
-            transparentCorners: false,
-            borderColor: "#FFBAE5",
-            cornerColor: "#FFBAE5",
-            perPixelTargetFind: true,
-            borderScaleFactor: 1,
-            cornerSize: 2,
-            rotatingPointOffset: 6,
-            originX: 'center',
-            originY: 'center',
-            // objectCaching: false
+          transparentCorners: false,
+          borderColor: "#FFBAE5",
+          cornerColor: "#FFBAE5",
+          perPixelTargetFind: true,
+          borderScaleFactor: 1,
+          cornerSize: 2,
+          rotatingPointOffset: 6,
+          originX: 'left',
+          originY: 'top',
+          // objectCaching: false
         });
 
         this.canvas = new fabric.Canvas(canvas, {
@@ -138,6 +138,7 @@ export const CanvasManager = withStyles(styles)(
 
         this.canvas.on('mouse:up', function(o){
           isDown = false;
+          console.log(self.GetCurrentRectPosition())
         });
       }
 
@@ -146,11 +147,6 @@ export const CanvasManager = withStyles(styles)(
         var self = this;
         if (typeof this.props.setShouldSubmit === 'function')
         {
-          var rect = this.GetCurrentRectPosition();
-          if (!rect)
-          {
-            return;
-          }
           request.post('/coral/')
           .set('X-CSRFToken', WebSettingProvider.csrfToken)
           .timeout({
@@ -332,7 +328,7 @@ export const CanvasManager = withStyles(styles)(
           cr.x0 = rect.left / cwidth;
           cr.x1 = (rect.left + rect.width) / cwidth;
           cr.y0 = rect.top / cheight;
-          cr.y1 = (rect.top - rect.height) / cheight;
+          cr.y1 = (rect.top + rect.height) / cheight;
           return cr;
         }
         
