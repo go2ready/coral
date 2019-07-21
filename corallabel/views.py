@@ -5,11 +5,12 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
 
 import xml.etree.ElementTree as ET
 
 from corallabel.models import Corals, CoralRect
-from corallabel.serializers import CoralsSerializer, CoralRectSerializerFull
+from corallabel.serializers import CoralsSerializer, CoralRectSerializer
 
 from rest_framework.views import APIView
 
@@ -22,6 +23,12 @@ FLICKR_URL = 'https://www.flickr.com/services/rest/'
 
 def GetFlickrUrl(farmId, serverId, id, secret):
   return f'https://farm{farmId}.staticflickr.com/{serverId}/{id}_{secret}_b.jpg'
+
+class LabelledView(APIView):
+  def get(self, request):
+    queryset = CoralRect.objects.all()
+    serializer = CoralRectSerializer(queryset, many=True)
+    return JsonResponse(serializer.data, safe=False)
 
 # Create your views here.
 class PhotoRequestView(APIView):

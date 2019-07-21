@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.FrontendAppView.as_view()),
     path('coral/', views.PhotoRequestView.as_view()),
+    path('label/', views.LabelledView.as_view()),
 ]

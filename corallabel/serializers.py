@@ -3,10 +3,10 @@ from corallabel.models import Corals, CoralRect
 
 class CoralsSerializer(serializers.ModelSerializer):
   class Meta:
-      model = Corals
-      fields = ('url', 'farm', 'server', 'photoid', 'secret')
+    model = Corals
+    fields = ('url', 'farm', 'server', 'photoid', 'secret')
 
-class CoralRectSerializerFull(serializers.ModelSerializer):
+class CoralRectSerializer(serializers.ModelSerializer):
   class Meta:
-      model = CoralRect
-      fields = ('url', 'x0', 'x1', 'y0', 'y1')
+    model = CoralRect
+    fields = '__all__'
