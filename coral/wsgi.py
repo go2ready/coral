@@ -11,6 +11,10 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'coral.settings')
+sys.path.append('/opt/bitnami/apps/django/django_projects/coral')
+os.environ.setdefault("PYTHON_EGG_CACHE", "/opt/bitnami/apps/django/django_projects/coral/egg_cache")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "coral.settings")
+
+from django.core.wsgi import get_wsgi_application
 
 application = get_wsgi_application()
