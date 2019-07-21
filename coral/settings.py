@@ -28,7 +28,7 @@ FLICKR_KEY = 'e813628d1745d2099f9ca002681b381b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '40.115.17.233']
 
 # Application definition
 
