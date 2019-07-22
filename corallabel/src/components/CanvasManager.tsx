@@ -163,6 +163,7 @@ export const CanvasManager = withStyles(styles)(
             if (res.status >= 200 && res.status < 300)
             {
               console.log('Photo info registered');
+              self.canvas.remove.apply(self.canvas, self.canvas.getObjects().concat());
               this.FetchFlickrPhoto();
             }
           }, err => {
